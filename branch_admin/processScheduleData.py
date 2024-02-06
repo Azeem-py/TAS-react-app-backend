@@ -43,11 +43,28 @@ def NewAvailaibilityData(data_str: str):
 
 def checkConflict(
     old_data: dict, new_data: dict, against: bool
-):  # against takes a boolean parameter so you know if you're comparing new data against or with the new data
-    common_days = list(set(old_data.keys()) & set(new_data.keys()))
+):  # against takes a boolean value so you know if you're comparing new data against or with the new data
+    old_data_days = set(old_data.keys())
+    new_data_days = set(new_data.keys())
+    common_days = list(old_data_days & new_data_days)
+    print("common_days", common_days)
     conflicts = {}
+    if against:
+        not_available_days = list(new_data_days - old_data_days)
+        print("bad day", not_available_days)
+        if not_available_days:
+            message = (
+                str(not_available_days)
+                .replace("[", "")
+                .replace("]", "")
+                .replace("'", "")
+            )
+            print("str bad day", message)
+
+            return {"NotAvailableDays": message}
     for day in common_days:
         existing_day = old_data[day]
+        print("existing_day", existing_day)
         new_day = new_data[day]
         for time_range in existing_day:
             old_from, old_to = [

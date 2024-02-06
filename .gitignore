@@ -1,46 +1,46 @@
-# db.sqlite3
-# __pycache__
-# migrations
+db.sqlite3
+__pycache__
+migrations
 
-# !migrations/__init__.py
+!migrations/__init__.py
 
-# # Ignore database files
-# *.sqlite3
-# *.db
+# Ignore database files
+*.sqlite3
+*.db
 
-# # Ignore static files
-# /staticfiles
+# Ignore static files
+/staticfiles
 
-# # Ignore media files
-# /media
+# Ignore media files
+/media
 
-# # Ignore Python bytecode files
-# __pycache__/
-# *.pyc
-# *.pyo
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
 
-# # Ignore logs
-# *.log
+# Ignore logs
+*.log
 
-# # Ignore development server
-# .env
+# Ignore development server
+.env
 
-# # Ignore local settings file
-# local_settings.py
-# email_data.py
-# # Ignore editor files
-# .vscode/
-# .idea/
-# *.iml
+# Ignore local settings file
+local_settings.py
+email_data.py
+# Ignore editor files
+.vscode/
+.idea/
+*.iml
 
-# # Ignore migrations
-# */migrations/
-# **/0001_initial.py
+# Ignore migrations
+*/migrations/
+**/0001_initial.py
 
-# # Ignore compiled files
-# *.pyc
-# *.pyd
-# *.pyo
+# Ignore compiled files
+*.pyc
+*.pyd
+*.pyo
 
-# # Ignore test data
-# /test_data/
+# Ignore test data
+/test_data/

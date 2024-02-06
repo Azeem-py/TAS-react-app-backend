@@ -366,17 +366,24 @@ class ClassScheduleView(viewsets.ViewSet):
     ]
 
     def create(self, request):
-        new_data = request.data["availablilityData"]
-        new_data = NewAvailaibilityData(new_data)
+        new_data = NewAvailaibilityData(request.data["availablilityData"])
         students = request.data["students"]
         tutor = request.data["tutor"]
         tutor_availability = list(
             EmployeeInfo.objects.filter(id=tutor).values("availablilityData")
         )
+
         if tutor_availability:
             old_data = BigAvailabiltyData(tutor_availability)
-            conflict = checkConflict(old_data, new_data, against=True)
+            conflict: {} = checkConflict(old_data, new_data, against=True)
             if conflict:
+                # this is for when a day a tutor is not available is encountered
+                if "NotAvailableDays" in conflict.keys():
+                    message = conflict["NotAvailableDays"]
+                    return Response(
+                        {"conflict": f"Tutor is not availabe on {message}"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
                 key = list(conflict.keys())[0]
                 if key:
                     fro, to = conflict[key][0], conflict[key][1]
